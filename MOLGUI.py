@@ -818,7 +818,6 @@ def streamlit_molecfit():
                 if not isinstance(st.session_state.wavelengths, (list, np.ndarray)):
                     st.session_state.fluxes = f":red[fluxes not set, non-list type {type(st.session_state.wavelengths)} detected.]"
                 if len(st.session_state.wavelengths) > 0:
-                    print(all([isinstance(xx, (int, float)) for x in st.session_state.wavelengths for xx in x]))
                     if all([isinstance(x, (list, np.ndarray)) for x in st.session_state.wavelengths]) and all([isinstance(xx, (int, float)) for x in st.session_state.wavelengths for xx in x]):
                         st.session_state.wavmsg = f":green[wavelengths set, Segment 0: \[{st.session_state.wavelengths[0][0]:.3f} ... {st.session_state.wavelengths[0][-1]:.3f}\]]"
                     elif all(isinstance(x, (int, float)) for x in st.session_state.wavelengths):
