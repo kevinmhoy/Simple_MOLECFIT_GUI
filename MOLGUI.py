@@ -392,7 +392,7 @@ def streamlit_run_molecfit_together():
                                    f'--output-dir={output_directory}', 'molecfit_calctrans', 'configs/calctrans.sof'], 
                                    stdout=devnull, stderr=subprocess.STDOUT)
         else:
-            subprocess.check_call(['esorex', '--recipe-config=configs/configs/molecfit_calctrans.rc', 
+            subprocess.check_call(['esorex', '--recipe-config=configs/molecfit_calctrans.rc', 
                                    f'--output-dir={output_directory}', 'molecfit_calctrans', 'configs/calctrans.sof'], 
                                    stderr=subprocess.STDOUT)
         
