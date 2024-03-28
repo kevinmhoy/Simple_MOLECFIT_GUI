@@ -8,7 +8,6 @@ import json
 from io import BytesIO
 from streamlit_ace import st_ace
 import sys
-from code_editor import code_editor
 import importlib
 from datetime import date
 from datetime import datetime
