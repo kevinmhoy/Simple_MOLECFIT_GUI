@@ -7,7 +7,6 @@ matplotlib==3.6.2
 numpy==1.26.4
 streamlit==1.28.1
 streamlit_ace==0.1.1
-streamlit_code_editor==0.1.10
 
 # Tutorial
 To run the code, run the command "streamlit run MOLGUI.py" in the directory containing MOLGUI.py, which will open a browser window for the GUI
