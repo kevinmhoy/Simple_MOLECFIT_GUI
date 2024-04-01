@@ -3,6 +3,7 @@ Simple GUI for quickly and easily running ESO's MOLECFIT recipes.
 
 # Requirements
 All MOLECFIT esorex recipes must be installed: https://www.eso.org/sci/software/cpl/esorex.html  
+Python Requirements (just pip install):  
 astropy==5.3.4  
 matplotlib==3.6.2  
 numpy==1.26.4  
