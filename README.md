@@ -9,6 +9,13 @@ numpy==1.26.4
 streamlit==1.28.1
 streamlit_ace==0.1.1
 
+# File Structure
+Data can be loaded in from any directory, so long as it is accurately pointed to in the code input section.
+All outputs will be stored in the directory containing MOLGUI.py. 
+The final output data will appear directly in the main directory, with the name "{sciencefile}\_CORRECTED.fits"
+Other outputs (such as those from MOLECFIT directly) will appear in the outputs folder, typically somehow labelled with the date and time they were created.
+
+
 # Tutorial
 To run the code, run the command "streamlit run MOLGUI.py" in the directory containing MOLGUI.py, the "css" folder, and the "configs" folder containing esorex .rc files named as they are in this repository. This will open a browser window for the GUI.
 
