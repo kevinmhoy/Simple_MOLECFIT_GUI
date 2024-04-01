@@ -2,12 +2,12 @@
 Simple GUI for quickly and easily running ESO's MOLECFIT recipes. 
 
 # Requirements
-All MOLECFIT esorex recipes must be installed: https://www.eso.org/sci/software/cpl/esorex.html
-astropy==5.3.4
-matplotlib==3.6.2
-numpy==1.26.4
-streamlit==1.28.1
-streamlit_ace==0.1.1
+All MOLECFIT esorex recipes must be installed: https://www.eso.org/sci/software/cpl/esorex.html \n
+astropy==5.3.4\n
+matplotlib==3.6.2\n
+numpy==1.26.4\n
+streamlit==1.28.1\n
+streamlit_ace==0.1.1\n
 
 # File Structure
 Data can be loaded in from any directory, so long as it is accurately pointed to in the code input section.
