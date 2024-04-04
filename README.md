@@ -13,7 +13,7 @@ streamlit_ace==0.1.1
 # File Structure
 Data can be loaded in from any directory, so long as it is accurately pointed to in the code input section.
 All outputs will be stored in the directory containing MOLGUI.py. 
-The final output data will appear directly in the main directory, with the name "{sciencefile}\_CORRECTED.fits"
+The final output data will appear in the same directory as your sciencefile, with the name "{sciencefile}\_CORRECTED.fits"
 Other outputs (such as those from MOLECFIT directly) will appear in the outputs folder, typically somehow labelled with the date and time they were created.
 
 
