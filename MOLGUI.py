@@ -384,7 +384,7 @@ def streamlit_run_molecfit_together():
         #except subprocess.CalledProcessError as e:
             #print(e.output)
         
-    print("Running Molecfit_Calctrans...")
+    print("Running MOLECFIT_Calctrans...")
     with open(os.devnull, 'wb') as devnull:
         if not st.session_state.verbose:
             subprocess.check_call(['esorex', '--recipe-config=configs/molecfit_calctrans.rc', 
@@ -395,7 +395,7 @@ def streamlit_run_molecfit_together():
                                    f'--output-dir={output_directory}', 'molecfit_calctrans', 'configs/calctrans.sof'], 
                                    stderr=subprocess.STDOUT)
         
-    print("Running Molecfit_Correct...")
+    print("Running MOLECFIT_Correct...")
     with open(os.devnull, 'wb') as devnull:
         if not st.session_state.verbose:
             subprocess.check_call(['esorex', '--recipe-config=configs/molecfit_correct.rc', 
@@ -1355,14 +1355,16 @@ def streamlit_molecfit():
                                     for chichi in st.session_state.chis:
                                         ichi = [float(z) for z in chichi]
                                         means.append(np.mean(ichi))
-                                    st.session_state.loglines.append(f"{logabund} | {logchi}\n")
+                                    if f"{logabund} | {logchi}\n" not in st.session_state.loglines:
+                                        st.session_state.loglines.append(f"{logabund} | {logchi}\n")
                                     if float(np.mean(itchi)) == min(means):
                                         st.markdown(f":green[{abundancestring}{chistring}]")
                                     else:
                                         st.markdown(f"{abundancestring} {chistring}")
                                 else:
                                     chichi = [float(z) for z in st.session_state.chis]
-                                    st.session_state.loglines.append(f"{logabund} | {logchi}\n")
+                                    if f"{logabund} | {logchi}\n" not in st.session_state.loglines:
+                                        st.session_state.loglines.append(f"{logabund} | {logchi}\n")
                                     if float(st.session_state.chis[i]) == min(chichi):
                                         st.markdown(f":green[{abundancestring}{chistring}]")
                                     else:
