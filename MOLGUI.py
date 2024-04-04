@@ -1045,14 +1045,14 @@ def streamlit_molecfit():
                         ax.set_xlim([0.9999 * st.session_state.dispmin, 1.0001 * st.session_state.dispmax])
                         if st.session_state.overlap:
                             if isinstance(st.session_state.chis[-1],list):
-                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum", f"Reduced X^2: {[float(z) for z in st.session_state.chis[-1]]}"])
+                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum", f"Reduced X^2: {[float(z) for z in st.session_state.chis[st.session_state.appliedit]]}"])
                             else:
-                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum", f"Reduced X^2: {float(st.session_state.chis[-1])}"])
+                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum", f"Reduced X^2: {float(st.session_state.chis[st.session_state.appliedit])}"])
                         else:
                             if isinstance(st.session_state.chis[-1],list):
-                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum + Offset", f"Reduced X^2: {[float(z) for z in st.session_state.chis[-1]]}"])
+                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum + Offset", f"Reduced X^2: {[float(z) for z in st.session_state.chis[st.session_state.appliedit]]}"])
                             else:
-                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum + Offset", f"Reduced X^2: {float(st.session_state.chis[-1])}"])
+                                ax.legend(["Uncorrected Spectrum", "Corrected Spectrum + Offset", f"Reduced X^2: {float(st.session_state.chis[st.session_state.appliedit])}"])
                         if st.session_state.showtel:
                             ax2 = ax.twinx()
                             color2 = "green"
