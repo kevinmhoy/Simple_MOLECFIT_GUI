@@ -43,13 +43,27 @@ def create_molec_input(wav,flux,error,sciencefile, minwav, maxwav, relatives, cr
         hdu_con = fits.HDUList([primary_hdu])
         hdu_cor = fits.HDUList([primary_hdu])
 
-    else: 
-        hdul_output = fits.HDUList()
+
+    elif st.session_state.use_manual_params: 
+        primary_hdu = fits.PrimaryHDU()
+        hdul_output = fits.HDUList([primary_hdu])
         hdu_win = fits.HDUList()
         hdu_mol = fits.HDUList()
         hdu_atm = fits.HDUList()
         hdu_con = fits.HDUList()
         hdu_cor = fits.HDUList()
+        hdul_output[0].header["MJD-OBS"] = st.session_state.manual_params[0]
+        hdul_output[0].header["UTC"] = st.session_state.manual_params[1]
+        hdul_output[0].header["ESO TEL ALT"] = st.session_state.manual_params[2]
+        hdul_output[0].header["ESO TEL AMBI RHUM"] = st.session_state.manual_params[3]
+        hdul_output[0].header["ESO TEL AMBI PRES START"] = st.session_state.manual_params[4]
+        hdul_output[0].header["ESO TEL AMBI TEMP"] = st.session_state.manual_params[5]
+        hdul_output[0].header["ESO TEL TH M1 TEMP"] = st.session_state.manual_params[6]
+        hdul_output[0].header["ESO TEL GEOELEV"] = st.session_state.manual_params[7]
+        hdul_output[0].header["ESO TEL GEOLON"] = st.session_state.manual_params[8]
+        hdul_output[0].header["ESO TEL GEOLAT"] = st.session_state.manual_params[9]
+        hdul_output[0].header["ESO INS SLIT1 WID"] = st.session_state.manual_params[10]
+        
     
     if crop:
         for i in range(len(wav)-1):
@@ -749,6 +763,10 @@ if 'abunderrs' not in st.session_state:
     st.session_state.abunderrs = [0, 0, 0, 0, 0, 0, 0]
 if 'verbose' not in st.session_state:
     st.session_state.verbose = False
+if 'use_manual_params' not in st.session_state:
+    st.session_state.use_manual_params = False
+if 'manual_params' not in st.session_state:
+    st.session_state.manual_params = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
 CONVERSION = {'micron':1.0, 'microns':1.0, 'mum':1.0, 'µm':1.0, 'm':1E6, 'meter':1E6, 'meters':1E6, 'cm':1E4, 'centimeter':1E4, 'centimeters':1E4, 'mm':1E3, 'millimeter':1E3, 'millimeters':1E3, 'nm':1E-3, 'nanometer':1E-3, 'nanometers':1E-3, 'angstrom':1E-4, 'angstroms':1E-4, 'Å':1E-4}
@@ -770,7 +788,7 @@ def streamlit_molecfit():
     st.set_page_config(layout="wide")
     load_css("css/streamlit.css")
 
-    inputtab, molectab = st.tabs(["Data Input", "MOLECFIT"])
+    inputtab, paramtab, molectab = st.tabs(["Data Input", "Observation Parameters (TEST)", "MOLECFIT"])
     savejson = {}
     goodtogo = True
     if 'code_default' not in st.session_state:
@@ -975,6 +993,83 @@ def streamlit_molecfit():
 
         #if sciencefile != "":
             #print(sciencefile) 
+
+    with paramtab:
+        st.markdown(":red[WARNING: THIS FUNCTIONALITY TO GENERALIZE THIS GUI TO ALL DATA MAY NOT FUNCTION CORRECTLY. USE ESO HEADER IF AVAILABLE]")
+        st.session_state.use_manual_params = st.checkbox("Use Manual Observation Parameters (you've been warned)")
+        if st.session_state.use_manual_params:
+            timecol, paramcol = st.columns([1,1])
+            with timecol:
+                st.text("Time Information")
+                date_text = st.text_input("MJD") #MJD-OBS
+                if date_text != st.session_state.manual_params[0] and date_text != "":
+                    try:
+                        st.session_state.manual_params[0] = float(date_text)
+                    except:
+                        st.markdown(":red[INVALID ENTRY]")
+                time_text = st.text_input("UTC") #UTC
+                if time_text != st.session_state.manual_params[1] and time_text != "":
+                    try:
+                        st.session_state.manual_params[1] = float(time_text)
+                    except:
+                        st.markdown(":red[INVALID ENTRY]")
+            with paramcol:
+                st.text("Position/Atmospheric Information")
+                alt_text = st.text_input("Altitude Angle at Start (degrees)") #ESO TEL ALT
+                if alt_text != st.session_state.manual_params[2] and alt_text != "":
+                    try:
+                        st.session_state.manual_params[2] = float(alt_text)
+                    except:
+                        st.markdown(":red[INVALID ENTRY]")
+                rhum_text = st.text_input("Relative Humidity (percent)") #ESO TEL AMBI RHUM
+                if rhum_text != st.session_state.manual_params[3] and rhum_text != "":
+                    try:
+                        st.session_state.manual_params[3] = float(rhum_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                press_text = st.text_input("Pressure (hPa)") #ESO TEL AMBI PRES START
+                if press_text != st.session_state.manual_params[4] and press_text != "":
+                    try:
+                        st.session_state.manual_params[4] = float(press_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                out_temp_text = st.text_input("Ambient Temp (C)") #ESO TEL AMBI TEMP
+                if out_temp_text != st.session_state.manual_params[5] and out_temp_text != "":
+                    try:
+                        st.session_state.manual_params[5] = float(out_temp_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                mirror_temp_text = st.text_input("TH M1 Temp (C)") #ESO TEL TH M1 TEMP
+                if mirror_temp_text != st.session_state.manual_params[6] and mirror_temp_text != "":
+                    try:
+                        st.session_state.manual_params[6] = float(mirror_temp_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                ele_text = st.text_input("GEOELEVATION (m)") #ESO TEL GEOELEV
+                if ele_text != st.session_state.manual_params[7] and ele_text != "":
+                    try:
+                        st.session_state.manual_params[7] = float(ele_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                long_text = st.text_input("Longitude (degrees)") #ESO TEL GEOLON
+                if long_text != st.session_state.manual_params[8] and long_text != "":
+                    try:
+                        st.session_state.manual_params[8] = float(long_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                lat_text = st.text_input("Latitude (degrees)") #ESO TEL GEOLAT
+                if lat_text != st.session_state.manual_params[9] and lat_text != "":
+                    try:
+                        st.session_state.manual_params[9] = float(lat_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+                width_text = st.text_input("SLIT1 WID (arcseconds)") #ESO INS SLIT1 WID
+                if width_text != st.session_state.manual_params[10] and width_text != "":
+                    try:
+                        st.session_state.manual_params[10] = float(width_text)
+                    except:
+                        st.markdown(":red[invalid entry]")
+
                 
 
     with molectab:
@@ -982,7 +1077,7 @@ def streamlit_molecfit():
         updateplot = False
         st.header("MOLECFIT Correction")
         molectopcol1, molectopcol2, molectopcol3 = st.columns([0.4,2,0.4])
-        if any(':red[' in z for z in [st.session_state.wavmsg, st.session_state.fluxmsg, st.session_state.errmsg, st.session_state.scimsg, st.session_state.unitmsg]):
+        if any(':red[' in z for z in [st.session_state.wavmsg, st.session_state.fluxmsg, st.session_state.errmsg, st.session_state.unitmsg]) or (':red[' in st.session_state.scimsg and not st.session_state.use_manual_params):
             goodtogo = False
         if not goodtogo:
             st.markdown(":red[MUST SUCCESSFULLY IMPORT WAVELENGTHS, FLUXES, ERRORS, UNITS, AND SCIENCE FILE BEFORE CORRECTION]")
