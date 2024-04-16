@@ -1063,7 +1063,7 @@ def streamlit_molecfit():
                         st.session_state.manual_params[9] = float(lat_text)
                     except:
                         st.markdown(":red[invalid entry]")
-                width_text = st.text_input("SLIT1 WID (arcseconds)") #ESO INS SLIT1 WID
+                width_text = st.text_input("Slit Width (arcseconds)") #ESO INS SLIT1 WID
                 if width_text != st.session_state.manual_params[10] and width_text != "":
                     try:
                         st.session_state.manual_params[10] = float(width_text)
@@ -1195,6 +1195,8 @@ def streamlit_molecfit():
                     if st.button("Run MOLECFIT",type="primary"):
                         if (not all([m == 0 for m in st.session_state.okaymax]) or not all([m==0 for m in st.session_state.okaymin]) or not all([m==0 for m in st.session_state.abunderrs])):
                             st.markdown(":red[Must fix all invalid entries]")
+                        elif (not all([len(m) != 0 for m in st.session_state.wavmin])) or (not all([len(m) != 0 for m in st.session_state.wavmax])):
+                            st.markdown(":red[Must give proper values for all open wavelength windows]")
                         else:
                             if st.session_state.itmode == False:
                                 st.session_state.itmode = True
