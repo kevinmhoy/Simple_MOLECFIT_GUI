@@ -93,12 +93,16 @@ def create_molec_input(wav,flux,error,sciencefile, minwav, maxwav, relatives, cr
     if isinstance(minwav, float) and isinstance(maxwav, float):
         col_wmin = fits.Column(name="LOWER_LIMIT", format="D", array=[minwav])
         col_wmax = fits.Column(name="UPPER_LIMIT", format="D", array=[maxwav])
+        col_map = fits.Column(name="MAPPED_TO_CHIP", format="I", array=[1])
+        col_wlc = fits.Column(name="WLC_FIT_FLAG", format="I", array=[1])
+        col_cont = fits.Column(name="CONT_FIT_FLAG", format="I", array=[1])
     else:
         col_wmin = fits.Column(name="LOWER_LIMIT", format="D", array=minwav)
         col_wmax = fits.Column(name="UPPER_LIMIT", format="D", array=maxwav)
-    col_map = fits.Column(name="MAPPED_TO_CHIP", format="I", array=[1])
-    col_wlc = fits.Column(name="WLC_FIT_FLAG", format="I", array=[1])
-    col_cont = fits.Column(name="CONT_FIT_FLAG", format="I", array=[1])
+        col_map = fits.Column(name="MAPPED_TO_CHIP", format="I", array=[1]*len(minwav))
+        col_wlc = fits.Column(name="WLC_FIT_FLAG", format="I", array=[1]*len(minwav))
+        col_cont = fits.Column(name="CONT_FIT_FLAG", format="I", array=[1]*len(minwav))
+    
     columns = [col_wmin, col_wmax, col_map, col_wlc, col_cont]
     #columns = [col_wmin, col_wmax]
     table_hdu = fits.BinTableHDU.from_columns(columns)
@@ -208,8 +212,14 @@ def save_corrected_data(wavs, fluxes, errors, sciencefile=""):
     hdul_output = fits.HDUList([primary_hdu])
     if len(sciencefile) == 0:
         filename = "corrected_data.fits"
-    
-    filename = sciencefile[:-5] + "_CORRECTED.fits"
+    else:
+        letind = 0
+        dotind = len(sciencefile)
+        for letit,letter in enumerate(sciencefile):
+            if letter == ".":
+                dotind = letit
+        filename = sciencefile[:dotind] + "_CORRECTED.fits"
+    #filename = sciencefile[:-5] + "_CORRECTED.fits"
     
     for i,j,k in zip(wavs,fluxes,errors):
         col1 = fits.Column(name='WAVE', format='D', array=i) # create fits column for WAVE
@@ -1091,12 +1101,12 @@ def streamlit_molecfit():
                     st.session_state.chipnum = selectedchipnum
                     st.session_state.dispmin = st.session_state.wavelengths[selectedchipnum][0]
                     st.session_state.dispmax = st.session_state.wavelengths[selectedchipnum][-1]
-                dispminstr = st.text_input(f'Display Wavelength Minimum (MIN: {st.session_state.wavelengths[st.session_state.chipnum][0]:.1f})', value=f"{st.session_state.dispmin:.2f}")
+                dispminstr = st.text_input(f'Display Wavelength Minimum (MIN: {st.session_state.wavelengths[st.session_state.chipnum][0]:.3f})', value=f"{st.session_state.dispmin:.2f}")
                 if float(dispminstr) != st.session_state.dispmin:
                     st.session_state.dispmin = float(dispminstr)
                     updateplot = True
                     #st.rerun()
-                dispmaxstr = st.text_input(f'Display Wavelength Maximum (MAX: {st.session_state.wavelengths[st.session_state.chipnum][-1]:.1f})', value=f"{st.session_state.dispmax:.2f}")
+                dispmaxstr = st.text_input(f'Display Wavelength Maximum (MAX: {st.session_state.wavelengths[st.session_state.chipnum][-1]:.3f})', value=f"{st.session_state.dispmax:.2f}")
                 if float(dispmaxstr) != st.session_state.dispmax:
                     st.session_state.dispmax = float(dispmaxstr)
                     updateplot = True
@@ -1470,7 +1480,7 @@ def streamlit_molecfit():
                                 if st.button(ACTIVE_BUTTON_LABEL[i == st.session_state.appliedit], type = ACTIVE_BUTTON_COLOR[i == st.session_state.appliedit], key = f"rea{i}"):
                                     if i != st.session_state.appliedit:
                                         st.session_state.appliedit = i
-                                        for z in range(5):
+                                        for z in range(7):
                                             st.session_state.abundances[z] = st.session_state.tried_abundances[i][z]
                                         st.session_state.tempfluxes = st.session_state.pastflux[i]
                                         st.session_state.temperrors = st.session_state.pasterr[i]

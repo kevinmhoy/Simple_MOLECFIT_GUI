@@ -1,0 +1,67 @@
+
+Start time     : 2024-05-02T11:36:04
+Program name   : esorex
+Severity level : [ INFO  ] 
+
+11:36:04 [ INFO  ] : This is EsoRex, version 3.13.7
+11:36:04 [ INFO  ] : using the libraries: CPL = 7.3.2, CFITSIO = 4.2.0, WCSLIB = 7.12, FFTW (normal precision) = 3.3.10, FFTW (single precision) = 3.3.10
+11:36:04 [ INFO  ] : Invocation command line was: esorex --recipe-config=configs/molecfit_correct.rc --output-dir=MOLECFIT_Outputs/2024-05-02/11.34.51 molecfit_correct configs/correct.sof
+11:36:04 [ INFO  ] molecfit_correct: Check frameset (SOF tags) ...
+11:36:04 [ INFO  ] molecfit_config_mappingchk: Validating any declared mappings to TELLURIC_CORR ...
+11:36:04 [ INFO  ] molecfit_config_mappingchk: 	 Using chip extensions with SCIENCE frame so skipping SCIENCE related mapping checks
+11:36:04 [ INFO  ] molecfit_correct: Load 'molecfit_correct' recipe parameters ...
+11:36:04 [ INFO  ] molecfit_correct_parameters: Load TELLURIC_CORR from molecfit_calctrans(...)
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Check FITS file format ... (Searching first extension with data)
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Load  header in the extension[0]
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Check data   in the extension[0] : KEYWORD[NAXIS] = 0
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Load  header in the extension[1]
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Check data   in the extension[1] : KEYWORD[NAXIS] = 1
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Check           in the extension[1]: KEYWORD[XTENSION] = IMAGE
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Found format = IMAGE(1D)!
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits] - Loading FITS header/data ... (all extensions)
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_propertylist file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits (extension=0) --> [HEADER   ]
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_propertylist file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits (extension=1) --> [HEADER   ]
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_vector       file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/TELLURIC_CORR.fits (extension=1) --> [IMAGE(1D)]
+11:36:04 [ INFO  ] molecfit_correct_parameters: WLC_REF VALUE ->DATA 
+11:36:04 [ INFO  ] molecfit_correct_parameters: WLC_REF VALUE  AFTER UPDATING->DATA 
+11:36:04 [ INFO  ] molecfit_correct: Loading MAPPING_CORRECT cpl_table
+11:36:04 [ INFO  ] molecfit_load_table: Tag = MAPPING_CORRECT, File = /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/MAPPING_CORRECT.fits : Loaded 'cpl_table *' in extension 1 ...
+11:36:04 [ INFO  ] molecfit_correct:  wlc_ref parameter:- DATA 
+11:36:04 [ INFO  ] molecfit_correct: CORRECT input SCIENCE_CALCTRANS/SCIENCE files 
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Check FITS file format ... (Searching first extension with data)
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Load  header in the extension[0]
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Check data   in the extension[0] : KEYWORD[NAXIS] = 0
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Load  header in the extension[1]
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Check data   in the extension[1] : KEYWORD[NAXIS] = 2
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Check           in the extension[1]: KEYWORD[XTENSION] = BINTABLE
+11:36:04 [ INFO  ] molecfit_fits_get_file_format: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Found format = BINTABLE!
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] - Loading FITS header/data ... (all extensions)
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_propertylist file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits (extension=0) --> [HEADER   ]
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_propertylist file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits (extension=1) --> [HEADER   ]
+11:36:04 [ INFO  ] molecfit_fits_load_verbose: Loaded cpl_table        file: /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits (extension=1) --> [BINTABLE ]
+11:36:04 [ INFO  ] molecfit_data_convert_to_table: File[/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits], ext[1] - Extract cpl_table from cpl_table (chip=1)
+11:36:04 [ INFO  ] molecfit_data_convert_to_table: DATA for molecfit :  Combined extension[1] (number original spectrums = 1)
+11:36:04 [ INFO  ] molecfit_data_convert_to_table: DATA for molecfit :  Show spectrum cpl_table combined structure extension[1]
+11:36:04 [ INFO  ] molecfit_correct: Save combined multi-extension molecfit_spectrum input FITS file ('CORRECT_CHIPS_COMBINED_SCIENCE.fits') in ext=1 ...
+11:36:04 [ INFO  ] cpl_dfs_product_save: Writing FITS propertylist product(CORRECT_CHIPS_COMBINED): CORRECT_CHIPS_COMBINED_SCIENCE.fits
+11:36:04 [ INFO  ] molecfit_correct: creating dummy extensions 0
+11:36:04 [ INFO  ] molecfit_correct: creating dummy extensions 1
+11:36:04 [ INFO  ] molecfit_correct: loaded mapping correct   1
+11:36:04 [ INFO  ] molecfit_correct: Create input molecfit cpl_table data : SCIENCE [/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits], ext=1
+11:36:04 [ INFO  ] molecfit_correct: File : /Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits, ext=1 : Apply correction
+11:36:04 [ INFO  ] molecfit_correct: correcting back to wavelength frame 
+11:36:04 [ INFO  ] molecfit_data_update_table: Update input normal DATA (BINTABLE) cpl_table (ext = 1, n_rows = 2040)
+11:36:04 [ INFO  ] molecfit_correct: Writing on disk [/Users/kevin/Programming/Simple_MOLECFIT_GUI/demo/MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE.fits] SCIENCE input FITS corrected on the same format --> SCIENCE_TELLURIC_CORR_SCIENCE.fits (PRO.CATG=SCIENCE_TELLURIC_CORR)
+11:36:04 [ INFO  ] molecfit_fits_write: Write output cpl_propertylist in primary extension --> 'cpl_propertylist *' with cpl_dfs_save_propertylist(...) function in file : SCIENCE_TELLURIC_CORR_SCIENCE.fits
+11:36:04 [ INFO  ] cpl_dfs_product_save: Writing FITS propertylist product(SCIENCE_TELLURIC_CORR): SCIENCE_TELLURIC_CORR_SCIENCE.fits
+11:36:04 [ INFO  ] molecfit_fits_write: Write output cpl_table     in extension[1]  --> 'cpl_table *' with cpl_dfs_save_table(...) function in file : SCIENCE_TELLURIC_CORR_SCIENCE.fits
+11:36:04 [ INFO  ] molecfit_correct: Recipe successfully!
+11:36:04 [ INFO  ] : Calculating product checksums
+11:36:04 [ INFO  ] : Created product MOLECFIT_Outputs/2024-05-02/11.34.51/CORRECT_CHIPS_COMBINED_SCIENCE.fits
+11:36:04 [ INFO  ] : Created product MOLECFIT_Outputs/2024-05-02/11.34.51/SCIENCE_TELLURIC_CORR_SCIENCE.fits
+11:36:04 [ INFO  ] : 2 products created
+11:36:04 [ INFO  ] : Recipe operation(s) took           0.56 seconds to complete.
+11:36:04 [ INFO  ] : Size of single raw input frame  =     0.16 MB
+
+11:36:04 [ INFO  ] : => processing rate of     0.28 MB/sec 
+
